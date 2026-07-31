@@ -1,0 +1,8 @@
+/.gitattributes export-ignore
+/.github export-ignore
+/.gitignore export-ignore
+/AGENTS.md export-ignore
+/CONTRIBUTING.md export-ignore
+/assets/tailwind.css export-ignore
+/scripts export-ignore
+/tailwind.config.cjs export-ignore

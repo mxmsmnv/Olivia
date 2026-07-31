@@ -1,0 +1,7 @@
+.DS_Store
+# runtime-generated module skills (recorded from installed modules' AGENTS.md)
+/skills/
+# locally built release archives and checksums
+/dist/
+# local development and release scripts
+/scripts/

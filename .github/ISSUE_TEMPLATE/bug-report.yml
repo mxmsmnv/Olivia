@@ -1,0 +1,81 @@
+name: Bug report
+description: Report a reproducible Olivia failure or regression.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Do not include API keys, credentials, private URLs, customer content, or unredacted logs.
+  - type: input
+    id: olivia-version
+    attributes:
+      label: Olivia version
+      placeholder: 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: processwire-version
+    attributes:
+      label: ProcessWire version
+      placeholder: 3.0.265
+    validations:
+      required: true
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP version and SAPI
+      placeholder: PHP 8.4.17, fpm-fcgi
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Affected workflow
+      options:
+        - Create - Direct
+        - Create - Interview
+        - Change
+        - Operate / Improve
+        - Build / Undo
+        - Reference analysis
+        - Module installation
+        - Admin interface
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Use a minimal prompt or sanitized example where possible.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: Include the visible error and job or build ID when available.
+    validations:
+      required: true
+  - type: textarea
+    id: support
+    attributes:
+      label: Sanitized Support info
+      description: Paste the secret-free bundle from Setup > Olivia > Support info, or explain why it is unavailable.
+      render: json
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: I removed secrets, private URLs, customer content, and personal data.
+          required: true
+        - label: I tested with a current database and files backup available.
+          required: true

@@ -1,0 +1,39 @@
+name: Feature request
+description: Propose a focused improvement to Olivia.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the ProcessWire workflow or user outcome, not only the proposed UI.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Preview, compatibility, and Undo considerations
+      description: Explain how the feature should remain reviewable and reversible.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Product area
+      options:
+        - Create
+        - Change
+        - Operate / Improve
+        - Build / Undo
+        - Visual references
+        - Integrations
+        - Admin interface
+        - Developer experience
+    validations:
+      required: true
