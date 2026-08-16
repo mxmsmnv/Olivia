@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1] - 2026-08-16
+
+- Added an optional provider contract for a provider-driven ProcessWire MCP
+  gateway.
+- Added one bounded read-only readiness tool that never returns prompts,
+  generated content, credentials, reference assets, or background job payloads.
+- Kept planning, Build, module installation, and Undo outside remote access
+  until each write workflow receives its own reviewed scope and confirmation.
+
 ## [1.0.0] - 2026-07-27
 
 First public release of Olivia.

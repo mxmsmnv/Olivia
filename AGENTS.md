@@ -38,6 +38,10 @@ Invariants (both): always show a plan preview before Build; every Build writes a
 - `Olivia.module.php` — primary configurable product module and ProcessWire Directory identity.
   Owns runtime settings, requires Squad, and auto-installs the admin companion through
   `installs => ['ProcessOlivia']`. Its install hook migrates settings from pre-split development builds.
+  It also declares the optional provider-driven MCP contract. The initial
+  `lqrs_olivia_status` tool is read-only and secret-free; do not expose prompts,
+  content, credentials, job payloads, planning, Build, installation, or Undo
+  without a separately reviewed scoped and idempotent tool.
 - `ProcessOlivia.module.php` — Process admin companion for **Setup → Olivia**. Handles
   submit routing, plan/job coordination and validation wiring. It receives the saved
   product settings from `Olivia`; do not add configurable fields or a second config store here.

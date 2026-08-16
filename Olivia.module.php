@@ -11,7 +11,7 @@ require_once __DIR__ . '/src/bootstrap.php';
 class Olivia extends WireData implements Module, ConfigurableModule {
 
 	public const VERSION = 100;
-	public const VERSION_STRING = '1.0.0';
+	public const VERSION_STRING = '1.0.1';
 	public const CONFIG_KEYS = [
 		'generationMode',
 		'generateImages',
@@ -33,6 +33,7 @@ class Olivia extends WireData implements Module, ConfigurableModule {
 			'icon'        => 'magic',
 			'autoload'    => false,
 			'singular'    => true,
+			'mcpProvider' => true,
 			'requires'    => ['PHP>=8.1.0', 'ProcessWire>=3.0.200', 'Squad>=1.9.0'],
 			'installs'    => ['ProcessOlivia'],
 		];
@@ -47,6 +48,58 @@ class Olivia extends WireData implements Module, ConfigurableModule {
 		$config = $this->wire->modules->getModuleConfigData('Olivia') ?: [];
 		$config['generationMode'] = (string)($config['generationMode'] ?? 'direct') ?: 'direct';
 		return $config;
+	}
+
+	/** Describe Olivia to an optional provider-driven MCP gateway. */
+	public function mcpProviderInfo(): array {
+		return ['name' => 'olivia', 'title' => 'Olivia', 'version' => self::VERSION_STRING];
+	}
+
+	/**
+	 * Expose only bounded, secret-free readiness information. Planning, builds,
+	 * module installation, and Undo require separate reviewed write tools.
+	 *
+	 * @return array<int,array<string,mixed>>
+	 */
+	public function mcpTools(): array {
+		return [[
+			'name' => 'lqrs_olivia_status',
+			'title' => 'Olivia readiness',
+			'description' => 'Read Olivia version, safe feature state, and required module readiness without prompts, content, credentials, or job payloads.',
+			'handler' => [$this, 'mcpOliviaStatus'],
+			'scope' => 'read',
+			'read_only' => true,
+			'destructive' => false,
+			'idempotent' => true,
+			'open_world' => false,
+			'input_schema' => ['type' => 'object', 'properties' => new \stdClass(), 'additionalProperties' => false],
+		]];
+	}
+
+	/** @return array<string,mixed> */
+	public function mcpOliviaStatus(): array {
+		$config = $this->settings();
+		$modules = $this->wire->modules;
+		$roles = 0;
+		foreach(array_keys($config) as $key) if(preg_match('/^role_[a-z0-9_]+_model$/', (string)$key) && trim((string)$config[$key]) !== '') $roles++;
+		return [
+			'version' => self::VERSION_STRING,
+			'generation_mode' => (string)$config['generationMode'],
+			'features' => [
+				'generate_images' => !empty($config['generateImages']),
+				'fill_content' => !empty($config['fillContent']),
+				'telemetry' => !empty($config['telemetry']),
+				'reference_screenshots' => !empty($config['referenceScreenshotProvider']),
+			],
+			'configured_ai_roles' => $roles,
+			'dependencies' => [
+				'squad' => $modules->isInstalled('Squad'),
+				'mercato' => $modules->isInstalled('Mercato'),
+				'ichiban' => $modules->isInstalled('Ichiban'),
+			],
+			'write_tools' => false,
+			'write_policy' => 'planning_build_install_and_undo_require_separate_reviewed_tools',
+		];
 	}
 
 	/** Preserve settings from development builds where ProcessOlivia owned the config. */

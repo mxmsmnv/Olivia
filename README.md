@@ -14,6 +14,15 @@ It is made for starting real ProcessWire websites from an idea without giving up
 
 If this project helps your work, consider supporting future development: [GitHub Sponsors](https://github.com/sponsors/mxmsmnv) or [smnv.org/sponsor](https://smnv.org/sponsor/).
 
+## MCP provider
+
+Olivia can register with an optional provider-driven ProcessWire MCP gateway.
+The initial contract exposes only `lqrs_olivia_status`: bounded, secret-free
+readiness metadata for remote operators. Prompts, generated content, reference
+assets, credentials, and background-job payloads are never returned. Planning,
+Build, module installation, and Undo remain unavailable remotely until those
+write workflows have dedicated reviewed scopes, idempotency, and confirmations.
+
 ## What Olivia Does
 
 - Converts a natural-language website request into a structured ProcessWire build plan.
@@ -152,7 +161,7 @@ Add an `AGENTS.md`, `API.md`, `EXAMPLES.md` or clear `README.md` to your module.
 
 ## Status
 
-**1.0.0.** This is Olivia's first public release. Create with Direct or Interview, plan preview, background Build, History and Undo are the supported release path. Change and Improve are included as experimental workflows while compatibility coverage grows across existing ProcessWire sites. Start on a development or staging installation and keep normal backups.
+**1.0.1.** Olivia now also exposes a bounded, read-only readiness contract to optional provider-driven MCP gateways. Create with Direct or Interview, plan preview, background Build, History and Undo remain the supported release path. Change and Improve are included as experimental workflows while compatibility coverage grows across existing ProcessWire sites. Start on a development or staging installation and keep normal backups.
 
 ## Support
 
