@@ -32,7 +32,7 @@ class ProcessOlivia extends Process {
 		return [
 			'title'       => 'Olivia Admin',
 			'summary'     => 'Admin interface for the Olivia AI Solution Architect.',
-			'version'     => 100,
+			'version'     => 102,
 			'author'      => 'Maxim Semenov',
 			'href'        => 'https://github.com/mxmsmnv/Olivia',
 			'license'     => 'MIT',

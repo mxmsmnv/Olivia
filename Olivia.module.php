@@ -10,8 +10,8 @@ require_once __DIR__ . '/src/bootstrap.php';
  */
 class Olivia extends WireData implements Module, ConfigurableModule {
 
-	public const VERSION = 100;
-	public const VERSION_STRING = '1.0.1';
+	public const VERSION = 102;
+	public const VERSION_STRING = '1.0.2';
 	public const CONFIG_KEYS = [
 		'generationMode',
 		'generateImages',
@@ -63,7 +63,7 @@ class Olivia extends WireData implements Module, ConfigurableModule {
 	 */
 	public function mcpTools(): array {
 		return [[
-			'name' => 'lqrs_olivia_status',
+			'name' => 'olivia_status',
 			'title' => 'Olivia readiness',
 			'description' => 'Read Olivia version, safe feature state, and required module readiness without prompts, content, credentials, or job payloads.',
 			'handler' => [$this, 'mcpOliviaStatus'],
@@ -72,7 +72,7 @@ class Olivia extends WireData implements Module, ConfigurableModule {
 			'destructive' => false,
 			'idempotent' => true,
 			'open_world' => false,
-			'input_schema' => ['type' => 'object', 'properties' => new \stdClass(), 'additionalProperties' => false],
+			'input_schema' => ['type' => 'object', 'properties' => new \stdClass(), 'required' => [], 'additionalProperties' => false],
 		]];
 	}
 

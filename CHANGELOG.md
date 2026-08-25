@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.2] - 2026-08-25
+
+- Changed the MCP tool to the installation-neutral `olivia_status` name so the
+  gateway can apply each site's configured namespace exactly once.
+- Kept remote access read-only and secret-free.
+
 ## [1.0.1] - 2026-08-16
 
 - Added an optional provider contract for a provider-driven ProcessWire MCP

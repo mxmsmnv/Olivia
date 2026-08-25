@@ -161,13 +161,20 @@ Add an `AGENTS.md`, `API.md`, `EXAMPLES.md` or clear `README.md` to your module.
 
 ## Status
 
-**1.0.1.** Olivia now also exposes a bounded, read-only readiness contract to optional provider-driven MCP gateways. Create with Direct or Interview, plan preview, background Build, History and Undo remain the supported release path. Change and Improve are included as experimental workflows while compatibility coverage grows across existing ProcessWire sites. Start on a development or staging installation and keep normal backups.
+**1.0.2.** Olivia exposes an installation-neutral, bounded, read-only readiness contract to optional provider-driven MCP gateways. Create with Direct or Interview, plan preview, background Build, History and Undo remain the supported release path. Change and Improve are included as experimental workflows while compatibility coverage grows across existing ProcessWire sites. Start on a development or staging installation and keep normal backups.
 
 ## Support
 
 Use the [GitHub issue tracker](https://github.com/mxmsmnv/Olivia/issues) for reproducible bugs and feature requests. Include the Olivia, ProcessWire and PHP versions, the affected mode, exact reproduction steps, and the secret-free support bundle from **Setup > Olivia > Support info**.
 
 Do not post API keys, provider credentials, private URLs, customer content or unredacted logs. Report security vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
+
+## MCP Server integration
+
+When the optional first-party MCP Server is installed, Olivia contributes the
+read-only `olivia_status` tool. It reports version, safe feature switches, and
+dependency readiness. Planning, Build, module installation, generated content,
+reference assets, job payloads, and Undo remain outside remote access.
 
 ## Documentation
 
