@@ -10,7 +10,6 @@ require_once __DIR__ . '/src/bootstrap.php';
  */
 class Olivia extends WireData implements Module, ConfigurableModule {
 
-	public const VERSION = 102;
 	public const VERSION_STRING = '1.0.2';
 	public const CONFIG_KEYS = [
 		'generationMode',
@@ -25,7 +24,7 @@ class Olivia extends WireData implements Module, ConfigurableModule {
 		return [
 			'title'       => 'Olivia',
 			'summary'     => 'AI Solution Architect for ProcessWire - generate a site from a prompt.',
-			'version'     => self::VERSION,
+			'version'     => 102,
 			'author'      => 'Maxim Semenov',
 			'href'        => 'https://github.com/mxmsmnv/Olivia',
 			'license'     => 'MIT',
