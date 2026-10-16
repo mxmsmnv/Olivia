@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3] - 2026-10-16
+
+- Added an opt-in PocketWire provider with an actor-matched `olivia` permission
+  gate and one local, read-only status resource.
+- PocketWire excludes feature/configuration values, prompts, content, reference
+  assets, job payloads, credentials, planning, Build, installation, and Undo.
+
 ## [1.0.2] - 2026-08-25
 
 - Changed the MCP tool to the installation-neutral `olivia_status` name so the

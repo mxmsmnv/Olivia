@@ -161,7 +161,7 @@ Add an `AGENTS.md`, `API.md`, `EXAMPLES.md` or clear `README.md` to your module.
 
 ## Status
 
-**1.0.2.** Olivia exposes an installation-neutral, bounded, read-only readiness contract to optional provider-driven MCP gateways. Create with Direct or Interview, plan preview, background Build, History and Undo remain the supported release path. Change and Improve are included as experimental workflows while compatibility coverage grows across existing ProcessWire sites. Start on a development or staging installation and keep normal backups.
+**1.0.3.** Olivia exposes installation-neutral, bounded, read-only readiness contracts to optional provider-driven gateways. PocketWire receives only local module/dependency status after an actor-matched `olivia` permission check; configuration values, prompts, content, assets, jobs, credentials and write workflows are excluded. Create with Direct or Interview, plan preview, background Build, History and Undo remain the supported release path. Change and Improve are included as experimental workflows while compatibility coverage grows across existing ProcessWire sites. Start on a development or staging installation and keep normal backups.
 
 ## Support
 

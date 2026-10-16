@@ -10,7 +10,7 @@ require_once __DIR__ . '/src/bootstrap.php';
  */
 class Olivia extends WireData implements Module, ConfigurableModule {
 
-	public const VERSION_STRING = '1.0.2';
+	public const VERSION_STRING = '1.0.3';
 	public const CONFIG_KEYS = [
 		'generationMode',
 		'generateImages',
@@ -24,7 +24,7 @@ class Olivia extends WireData implements Module, ConfigurableModule {
 		return [
 			'title'       => 'Olivia',
 			'summary'     => 'AI Solution Architect for ProcessWire - generate a site from a prompt.',
-			'version'     => 102,
+			'version'     => 103,
 			'author'      => 'Maxim Semenov',
 			'href'        => 'https://github.com/mxmsmnv/Olivia',
 			'license'     => 'MIT',
@@ -33,9 +33,43 @@ class Olivia extends WireData implements Module, ConfigurableModule {
 			'autoload'    => false,
 			'singular'    => true,
 			'mcpProvider' => true,
+			'pocketWireProvider' => true,
 			'requires'    => ['PHP>=8.1.0', 'ProcessWire>=3.0.200', 'Squad>=1.9.0'],
 			'installs'    => ['ProcessOlivia'],
 		];
+	}
+
+	public function pocketWireProviderInfo(): array {
+		return ['id' => 'olivia', 'title' => 'Olivia', 'module' => 'Olivia', 'moduleVersion' => self::VERSION_STRING];
+	}
+
+	public function pocketWireManifest(User $actor): array {
+		$ready = $this->pocketWireCanRead($actor);
+		return [
+			'id' => 'olivia', 'title' => 'Olivia', 'module' => 'Olivia', 'moduleVersion' => self::VERSION_STRING,
+			'status' => $ready ? 'native_read_only' : 'unsupported',
+			'permissions' => ['scope' => 'providers.read', 'processWire' => ['olivia']],
+			'presentation' => ['layout' => 'dashboard', 'icon' => 'sparkles-outline', 'summary' => 'Local Olivia module and dependency status.', 'accentColor' => '#7C3AED'],
+			'resources' => $ready ? [['id' => 'status', 'title' => 'Status', 'method' => 'GET', 'endpoint' => '/api/pocketwire/v1/providers/olivia/status', 'presentation' => ['layout' => 'metrics']]] : [],
+			'actions' => [],
+		];
+	}
+
+	public function pocketWireRead(string $resource, string $identifier, array $query, User $actor): array {
+		if(!$this->pocketWireCanRead($actor)) throw new WirePermissionException('The olivia permission is required.');
+		if($resource !== 'status' || $identifier !== '') throw new Wire404Exception('Olivia resource was not found.');
+		$modules = $this->wire->modules;
+		return [
+			'version' => self::VERSION_STRING,
+			'dependencies' => ['squad' => $modules->isInstalled('Squad')],
+			'configuration_exposed' => false, 'content_exposed' => false, 'write_tools' => false,
+		];
+	}
+
+	private function pocketWireCanRead(User $actor): bool {
+		$current = $this->wire('user');
+		return (int)$current->id === (int)$actor->id
+			&& ($actor->isSuperuser() || ($actor->isLoggedin() && $actor->hasPermission('olivia')));
 	}
 
 	public function init() {
